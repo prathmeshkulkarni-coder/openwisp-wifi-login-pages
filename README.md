@@ -66,6 +66,7 @@ yarn jest client/components/404/404.test.js \
           client/components/contact-box/contact.test.js \
           client/components/footer/footer.test.js \
           client/components/modal/modal.test.js
+
 ✔ Result:
 
 <img width="1278" height="281" alt="Screenshot from 2026-03-20 11-11-38" src="https://github.com/user-attachments/assets/538e10e0-fa2f-4c5c-9227-704e59be4f25" />
