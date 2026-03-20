@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
-import {shallow, mount} from "enzyme";
 import React from "react";
-import renderer from "react-test-renderer";
+import {render, screen} from "@testing-library/react";
 
 import getConfig from "../../utils/get-config";
 import loadTranslation from "../../utils/load-translation";
@@ -34,13 +33,7 @@ const footerLinks = [
     verified: true,
   },
 ];
-const getLinkText = (wrapper, text) => {
-  const texts = [];
-  wrapper.find(text).forEach((node) => {
-    texts.push(node.text());
-  });
-  return texts;
-};
+
 const createTestProps = (props) => ({
   language: "en",
   footer: {
@@ -55,73 +48,75 @@ const createTestProps = (props) => ({
 });
 
 describe("<Footer /> rendering with placeholder translation tags", () => {
-  const props = createTestProps();
   it("should render translation placeholder correctly", () => {
-    const wrapper = shallow(<Footer {...props} />);
-    expect(wrapper).toMatchSnapshot();
+    const props = createTestProps();
+    const {container} = render(<Footer {...props} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
 
 describe("<Footer /> rendering", () => {
   let props;
-  let wrapper;
   beforeEach(() => {
     props = createTestProps();
-    wrapper = shallow(<Footer {...props} />);
     loadTranslation("en", "default");
   });
+
   it("should render correctly", () => {
-    props = createTestProps();
-    const component = renderer.create(<Footer {...props} />).toJSON();
-    expect(component).toMatchSnapshot();
+    const {container} = render(<Footer {...props} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
+
   it("should render without links", () => {
-    const links = {
-      footer: {...props.footer, links: []},
-    };
-    props = createTestProps(links);
-    wrapper = shallow(<Footer {...props} />);
-    expect(wrapper.find(".footer-link")).toHaveLength(0);
+    props = createTestProps({footer: {...props.footer, links: []}});
+    const {container} = render(<Footer {...props} />);
+    expect(container.querySelectorAll(".footer-link")).toHaveLength(0);
   });
+
   it("should render after html", () => {
-    wrapper = mount(<Footer {...props} />);
-    wrapper.setProps({}); // for force re-render of wrapper
-    expect(wrapper.update().find(".footer-row-2-inner").text()).toBe(
+    const {container} = render(<Footer {...props} />);
+    expect(container.querySelector(".footer-row-2-inner").textContent).toBe(
       "after html",
     );
   });
+
   it("should render without authenticated links when not authenticated", () => {
-    props = createTestProps();
     props.footer.links = footerLinks;
     props.isAuthenticated = false;
-    wrapper = shallow(<Footer {...props} />);
-    const linkText = getLinkText(wrapper, ".footer-link");
-    expect(linkText).toContain("about");
-    expect(linkText).toContain("signUp");
-    expect(linkText).not.toContain("status");
-    expect(linkText).not.toContain("change-password");
+    const {container} = render(<Footer {...props} />);
+    const linkTexts = Array.from(
+      container.querySelectorAll(".footer-link"),
+    ).map((el) => el.textContent);
+    expect(linkTexts).toContain("about");
+    expect(linkTexts).toContain("signUp");
+    expect(linkTexts).not.toContain("status");
+    expect(linkTexts).not.toContain("change-password");
   });
+
   it("should render with authenticated links when authenticated", () => {
-    props = createTestProps();
     props.footer.links = footerLinks;
     props.isAuthenticated = true;
-    wrapper = shallow(<Footer {...props} />);
-    const linkText = getLinkText(wrapper, ".footer-link");
-    expect(linkText).not.toContain("signUp");
-    expect(linkText).toContain("about");
-    expect(linkText).toContain("status");
-    expect(linkText).toContain("change-password");
+    const {container} = render(<Footer {...props} />);
+    const linkTexts = Array.from(
+      container.querySelectorAll(".footer-link"),
+    ).map((el) => el.textContent);
+    expect(linkTexts).not.toContain("signUp");
+    expect(linkTexts).toContain("about");
+    expect(linkTexts).toContain("status");
+    expect(linkTexts).toContain("change-password");
   });
+
   it("should not render with verified links if not verified", () => {
-    props = createTestProps();
     props.footer.links = footerLinks;
     props.isAuthenticated = true;
     props.userData.is_verified = false;
-    wrapper = shallow(<Footer {...props} />);
-    const linkText = getLinkText(wrapper, ".footer-link");
-    expect(linkText).not.toContain("signUp");
-    expect(linkText).toContain("about");
-    expect(linkText).toContain("status");
-    expect(linkText).not.toContain("change-password");
+    const {container} = render(<Footer {...props} />);
+    const linkTexts = Array.from(
+      container.querySelectorAll(".footer-link"),
+    ).map((el) => el.textContent);
+    expect(linkTexts).not.toContain("signUp");
+    expect(linkTexts).toContain("about");
+    expect(linkTexts).toContain("status");
+    expect(linkTexts).not.toContain("change-password");
   });
 });

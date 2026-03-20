@@ -1,68 +1,68 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`<Contact /> rendering with placeholder translation tags should render translation placeholder correctly 1`] = `
+exports[`<Contact /> rendering should render correctly 1`] = `
 <div
-  className="side-column contact"
+  class="side-column contact"
 >
   <div
-    className="inner"
+    class="inner"
   >
     <div
-      className="row"
+      class="row"
     >
       <span
-        className="label"
+        class="label"
       >
-        EMAIL
+        Email
         :
       </span>
       <a
-        className="link"
+        class="link"
         href="mailto:support@openwisp.co"
       >
         support@openwisp.co
       </a>
     </div>
     <div
-      className="row"
+      class="row"
     >
       <span
-        className="label"
+        class="label"
       >
-        HELPDESK
+        Helpdesk
         :
       </span>
       <a
-        className="link"
+        class="link"
         href="tel:+789 948 564"
       >
         +789 948 564
       </a>
     </div>
     <div
-      className="contact-links"
+      class="contact-links"
     >
       <a
-        className="link "
+        class="link "
         href="https://twitter.com/openwisp"
         rel="noopener noreferrer"
         target="_blank"
       >
         <img
           alt="twitter"
-          className="contact-image "
+          class="contact-image "
           src="/assets/default/twitter.svg"
         />
       </a>
       <a
-        className="link "
+        class="link "
         href="https://facebook.com/openwisp"
         rel="noopener noreferrer"
         target="_blank"
       >
         <img
           alt="facebook"
-          className="contact-image "
+          class="contact-image "
           src="/assets/default/facebook.svg"
         />
       </a>
@@ -71,69 +71,69 @@ exports[`<Contact /> rendering with placeholder translation tags should render t
 </div>
 `;
 
-exports[`<Status /> rendering should render correctly 1`] = `
+exports[`<Contact /> rendering with placeholder translation tags should render translation placeholder correctly 1`] = `
 <div
-  className="side-column contact"
+  class="side-column contact"
 >
   <div
-    className="inner"
+    class="inner"
   >
     <div
-      className="row"
+      class="row"
     >
       <span
-        className="label"
+        class="label"
       >
-        Email
+        EMAIL
         :
       </span>
       <a
-        className="link"
+        class="link"
         href="mailto:support@openwisp.co"
       >
         support@openwisp.co
       </a>
     </div>
     <div
-      className="row"
+      class="row"
     >
       <span
-        className="label"
+        class="label"
       >
-        Helpdesk
+        HELPDESK
         :
       </span>
       <a
-        className="link"
+        class="link"
         href="tel:+789 948 564"
       >
         +789 948 564
       </a>
     </div>
     <div
-      className="contact-links"
+      class="contact-links"
     >
       <a
-        className="link "
+        class="link "
         href="https://twitter.com/openwisp"
         rel="noopener noreferrer"
         target="_blank"
       >
         <img
           alt="twitter"
-          className="contact-image "
+          class="contact-image "
           src="/assets/default/twitter.svg"
         />
       </a>
       <a
-        className="link "
+        class="link "
         href="https://facebook.com/openwisp"
         rel="noopener noreferrer"
         target="_blank"
       >
         <img
           alt="facebook"
-          className="contact-image "
+          class="contact-image "
           src="/assets/default/facebook.svg"
         />
       </a>

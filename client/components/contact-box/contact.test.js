@@ -1,6 +1,5 @@
-import {shallow} from "enzyme";
 import React from "react";
-import ShallowRenderer from "react-test-renderer/shallow";
+import {render} from "@testing-library/react";
 
 import getConfig from "../../utils/get-config";
 import loadTranslation from "../../utils/load-translation";
@@ -41,45 +40,44 @@ const createTestProps = (props) => ({
 });
 
 describe("<Contact /> rendering with placeholder translation tags", () => {
-  const props = createTestProps();
   it("should render translation placeholder correctly", () => {
-    const renderer = new ShallowRenderer();
-    const wrapper = renderer.render(<Contact {...props} />);
-    expect(wrapper).toMatchSnapshot();
+    const props = createTestProps();
+    const {container} = render(<Contact {...props} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
 
-describe("<Status /> rendering", () => {
+describe("<Contact /> rendering", () => {
   let props;
   beforeEach(() => {
     loadTranslation("en", "default");
   });
+
   it("should render correctly", () => {
     props = createTestProps();
-    const renderer = new ShallowRenderer();
-    const component = renderer.render(<Contact {...props} />);
-    expect(component).toMatchSnapshot();
+    const {container} = render(<Contact {...props} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it("should render without authenticated links when not authenticated", () => {
     props = createTestProps();
     props.contactPage.social_links = links;
     props.isAuthenticated = false;
-    const wrapper = shallow(<Contact {...props} />);
-    expect(wrapper.find(".contact-image")).toHaveLength(2);
-    expect(wrapper.find(".link.google")).toHaveLength(1);
-    expect(wrapper.find(".link.facebook")).toHaveLength(1);
-    expect(wrapper.find(".link.twitter")).toHaveLength(0);
+    const {container} = render(<Contact {...props} />);
+    expect(container.querySelectorAll(".contact-image")).toHaveLength(2);
+    expect(container.querySelector(".link.google")).toBeTruthy();
+    expect(container.querySelector(".link.facebook")).toBeTruthy();
+    expect(container.querySelector(".link.twitter")).toBeNull();
   });
 
   it("should render with authenticated links when authenticated", () => {
     props = createTestProps();
     props.contactPage.social_links = links;
     props.isAuthenticated = true;
-    const wrapper = shallow(<Contact {...props} />);
-    expect(wrapper.find(".contact-image")).toHaveLength(2);
-    expect(wrapper.find(".link.google")).toHaveLength(1);
-    expect(wrapper.find(".link.twitter")).toHaveLength(1);
-    expect(wrapper.find(".link.facebook")).toHaveLength(0);
+    const {container} = render(<Contact {...props} />);
+    expect(container.querySelectorAll(".contact-image")).toHaveLength(2);
+    expect(container.querySelector(".link.google")).toBeTruthy();
+    expect(container.querySelector(".link.twitter")).toBeTruthy();
+    expect(container.querySelector(".link.facebook")).toBeNull();
   });
 });

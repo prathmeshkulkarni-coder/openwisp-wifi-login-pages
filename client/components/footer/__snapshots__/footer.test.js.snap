@@ -2,16 +2,16 @@
 
 exports[`<Footer /> rendering should render correctly 1`] = `
 <div
-  className="footer-container"
+  class="footer-container"
 >
   <div
-    className="footer-row-1"
+    class="footer-row-1"
   >
     <div
-      className="footer-row-1-inner"
+      class="footer-row-1-inner"
     >
       <a
-        className="footer-link "
+        class="footer-link "
         href="https://link-1.com"
         rel="noopener noreferrer"
         target="_blank"
@@ -21,34 +21,30 @@ exports[`<Footer /> rendering should render correctly 1`] = `
     </div>
   </div>
   <div
-    className="footer-row-2"
+    class="footer-row-2"
   >
     <div
-      className="footer-row-2-inner"
-      dangerouslySetInnerHTML={
-        {
-          "__html": "after html",
-        }
-      }
-    />
+      class="footer-row-2-inner"
+    >
+      after html
+    </div>
   </div>
 </div>
 `;
 
 exports[`<Footer /> rendering with placeholder translation tags should render translation placeholder correctly 1`] = `
 <div
-  className="footer-container"
+  class="footer-container"
 >
   <div
-    className="footer-row-1"
+    class="footer-row-1"
   >
     <div
-      className="footer-row-1-inner"
+      class="footer-row-1-inner"
     >
       <a
-        className="footer-link "
+        class="footer-link "
         href="https://link-1.com"
-        key="https://link-1.com"
         rel="noopener noreferrer"
         target="_blank"
       >
@@ -57,16 +53,13 @@ exports[`<Footer /> rendering with placeholder translation tags should render tr
     </div>
   </div>
   <div
-    className="footer-row-2"
+    class="footer-row-2"
   >
     <div
-      className="footer-row-2-inner"
-      dangerouslySetInnerHTML={
-        {
-          "__html": "after html",
-        }
-      }
-    />
+      class="footer-row-2-inner"
+    >
+      after html
+    </div>
   </div>
 </div>
 `;
