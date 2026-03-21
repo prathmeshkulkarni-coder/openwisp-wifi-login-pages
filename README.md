@@ -16,25 +16,25 @@ Proof of Concept: React 19 Upgrade & RTL Migration
 
   Updated:
 
-  react → ^19.0.0
+  1.react → ^19.0.0
 
-  react-dom → ^19.0.0
+  2.react-dom → ^19.0.0
 
-  react-test-renderer → ^19.0.0
+  3.react-test-renderer → ^19.0.0
 
 - Removed Legacy Enzyme Setup
 
   Removed:
 
-  @cfaester/enzyme-adapter-react-18
+  1.@cfaester/enzyme-adapter-react-18
 
   Cleaned up:
 
-  config/jest.config.js
+    config/jest.config.js
 
   This ensures:
 
-  No dependency on Enzyme globals
+    No dependency on Enzyme globals
 
 Fully independent RTL-based testing
 
@@ -42,13 +42,13 @@ Fully independent RTL-based testing
 
 Rewritten using modern React Testing Library (RTL) patterns:
 
-client/components/404/404.test.js
+1.client/components/404/404.test.js
 
-client/components/contact-box/contact.test.js
+2.client/components/contact-box/contact.test.js
 
-client/components/footer/footer.test.js
+3.client/components/footer/footer.test.js
 
-client/components/modal/modal.test.js
+4.client/components/modal/modal.test.js
 
 🔁 Migration Approach:
 
@@ -62,10 +62,11 @@ Improved readability and maintainability
 
 All migrated test suites pass successfully under React 19:
 
-yarn jest client/components/404/404.test.js \
-          client/components/contact-box/contact.test.js \
-          client/components/footer/footer.test.js \
-          client/components/modal/modal.test.js
+yarn jest
+          - client/components/404/404.test.js \
+          - client/components/contact-box/contact.test.js \
+          - client/components/footer/footer.test.js \
+          - client/components/modal/modal.test.js
 
 ✔ Result:
 
