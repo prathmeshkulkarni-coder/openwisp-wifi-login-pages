@@ -16,6 +16,8 @@ const footerLinks = [
     text: {en: "status"},
     url: "/status",
     authenticated: true,
+    icon: "status.svg",
+    alt: {en: "status"},
   },
   {
     text: {en: "signUp"},
@@ -31,6 +33,15 @@ const footerLinks = [
     url: "/change-password",
     authenticated: true,
     verified: true,
+  },
+  {
+    icon: "no-text-icon.svg",
+    url: "/no-text",
+  },
+  {
+    icon: "no-alt-icon.svg",
+    url: "/no-alt",
+    text: {en: "No Alt"},
   },
 ];
 

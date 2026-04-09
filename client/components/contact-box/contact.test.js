@@ -30,6 +30,11 @@ const links = [
     url: "https://google.com/openwisp",
     css: "google",
   },
+  {
+    text: {en: "Follow us"},
+    url: "https://blog.openwisp.com",
+    css: "blog",
+  },
 ];
 const createTestProps = (props) => ({
   language: "en",
